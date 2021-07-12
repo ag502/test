@@ -16,6 +16,10 @@ app.get("/good", (req, res) => {
   });
 });
 
+app.get("/test2", (req, res) => {
+  res.render("<h1>test</h1>");
+});
+
 app.listen(5000, () => {
   console.log("5000 ready");
 });
