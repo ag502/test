@@ -64,13 +64,25 @@ async function runProtooWebSocketServer() {
     fragmentationThreshold: 960000,
   });
 
-  console.log(protooWebSocketServer);
+  //   console.log(protooWebSocketServer);
 
   // Handle connections from clients.
+  let transport;
   protooWebSocketServer.on("connectionrequest", (info, accept, reject) => {
     console.log("t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    transport = accept();
+    // console.log(t);
     // Serialize this code into the queue to avoid that two peers connecting at
     // the same time with the same roomId create two separate rooms with same
     // roomId.
+
+    const room = new protoo.Room();
+    const peer = room.createPeer("alice", transport);
+
+    peer.on("request", (request, accept, reject) => {
+      console.log(request);
+      if (something in request) accept({ foo: "bar" });
+      else reject(400, "Not Here");
+    });
   });
 }
