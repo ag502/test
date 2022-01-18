@@ -78,7 +78,7 @@ async function runProtooWebSocketServer() {
 
     const room = new protoo.Room();
 
-    console.log(transport);
+    // console.log(transport);
     const peer = room.createPeer("alice", transport);
 
     // console.log("~~~~~~~~~~~~~~~");
@@ -90,6 +90,8 @@ async function runProtooWebSocketServer() {
       console.log("!!!!!!!!!!!!!!!!!!!!!");
       console.log(notification);
       console.log("!!!!!!!!!!!!!!!!!!!!!");
+
+      peer.notify("send", { foo: "good" });
     });
   });
 }
