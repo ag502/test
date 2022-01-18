@@ -79,6 +79,10 @@ async function runProtooWebSocketServer() {
     const room = new protoo.Room();
     const peer = room.createPeer("alice", transport);
 
+    console.log("~~~~~~~~~~~~~~~");
+    console.log(peer);
+    console.log("~~~~~~~~~~~~~~~");
+
     peer.on("request", (request, accept, reject) => {
       console.log(request);
       if (something in request) accept({ foo: "bar" });
